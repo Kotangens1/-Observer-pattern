@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Inter:wght@100;200;300;500;600;700;800&family=Rampart+One&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <section class = "authors">
+        <ul>
+            <li class ="authors__board">
+                <div class="authors__header">
+                    <h1 class="authors__name">sadovod</h1>
+                    <img class="authors__photo" src="authors/sadovod/photo.jpg">
+                </div>
+                <section class="authors__edit">
+                    <input class="authors__edit__input">
+                    <button class="btnPublication">Опубликовать</button>
+                    <input class="authors__edit__message">
+                </section>
+                <ul class="authors__publication">
+                </ul>
+            </li>
+            <li class ="authors__board">
+                <div class="authors__header">
+                    <h1 class="authors__name">slava</h1>
+                    <img class="authors__photo" src="authors/slava/photo.jpg">
+                </div>
+                <section class="authors__edit">
+                    <input class="authors__edit__input">
+                    <button class="btnPublication">Опубликовать</button>
+                    <input class="authors__edit__message">
+                </section>
+                <ul class="authors__publication">
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section class="subscribes">
+        <ul>
+            <li class="subscribes__board" id="kate">
+                <div class="subscribes__header">
+                    <h1 class="subscribes__name">Kate</h1>
+                    <img class="subscribes__photo" src="subscribes/kate.jpg">
+                </div>
+                <section class="subscribes__authors">
+                    <ul>
+                        <li>
+                            <input type="checkbox">
+                            sadovod
+                        </li>
+                        <li>
+                            <input type="checkbox">
+                            slava
+                        </li>
+                    </ul>
+                    <button class="btnSubcribe">Подписаться</button>
+                    <button class="btnUnsubscribe">Отписка</button>
+                </section>
+                <ul class="subscribes__news">
+                </ul>
+            </li>
+            <li class="subscribes__board" id="ksu">
+                <div class="subscribes__header">
+                    <h1 class="subscribes__name">Ksu</h1>
+                    <img class="subscribes__photo" src="subscribes/ksu.jpg">
+                </div>
+                <section class="subscribes__authors">
+                    <ul>
+                        <li>
+                            <input type="checkbox">
+                            sadovod
+                        </li>
+                        <li>
+                            <input type="checkbox">
+                            slava
+                        </li>
+                    </ul>
+                    <button class="btnSubcribe">Подписаться</button>
+                    <button class="btnUnsubscribe">Отписка</button>
+                </section>
+                <ul class="subscribes__news">
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <script src="code.js"></script>
+</body>
+</html>
