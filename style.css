@@ -1,91 +1,272 @@
 body {
-    font-family: Comfortaa;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    background-color: rgb(74, 0, 104);
-    color: rgb(0, 0, 0);
-    height: 1000px;
+    background: linear-gradient(180deg, #FFABAB 0%, #A7BAFF 100%);
+    color: black;
+    height: 1300px;
     font-family: Inter;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 h1{
-    font-family: Rampart One;
+    font-family: 'Rampart One';
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 78px;
+    margin: 0 0 34px;
 }
 
 h2{
     font-style: normal;
     font-weight: 300;
+    font-family: 'Rampart One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 52px;
+    display: flex;
+    align-items: center;
+    margin: 0;
 }
 
 h3{
+    font-family: 'Rampart One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 29px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+h4 {
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+}
+
+h5 {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(146, 162, 224, 1);
+    margin: 0;
+
+}
+
+h6 {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    color: rgba(146, 162, 224, 1);
+    margin: 0;
+}
+
+input, input:hover {
+    border: 0;
+    padding: 0;
+    border-radius: 2px;
+    outline: 0;
+}
+
+button {
+    border: 0;
+    padding: 0;
 }
 
 li, ul {
     margin: 0px;
     padding: 0px;
+    list-style-type: none;
 }
 
-.authors {
-    background-color: rgb(255, 175, 175);
-    width: 45%;
-    height: 100%;
+select{
+    border:none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
 }
 
-.authors__board, .subscribes__board {
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 10px;
-    height: 500px;
-
+::-webkit-scrollbar {
+    width: 0;
 }
 
-.authors__header, .subscribes__header {
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    border-style: none;
+    border-width: 1px;
+    height: 1px;
+    background-color: rgb(0, 0, 0);
+}
+
+header {
+    width: 1150px;
+}
+
+.observer {
+    width: 1150px;
+    height: 765px;
+    margin: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.hrObserver{
+    width: 380px;
+    left: 69px;
+    top: 166px;
+}
+
+.btnAddAuthor{
+    width: 35px;
+    height: 35px;
+    background: rgb(255, 255, 255);
+    border: 1px rgb(0, 0, 0);
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 46px;
+    display: flex;
     align-items: center;
-    background-color: rgb(100, 145, 60);
+    text-align: center;
+    justify-content: center;
+}
+
+.btnPublication, .btnSubcribe, .btnUnsubscribe {
+    width: 96px;
+    height: 34px;
+    left: 8px;
+    top: 150px;
+    background: rgba(146, 162, 224, 1);
+    border-radius: 6px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18.15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+}
+
+.authors,.subscribes {
+    width: 384px;
+}
+
+.authors__board, .subscribes__board {
+    background: rgb(255, 255, 255);
+    border-radius: 25px;
+    width: 364px;
+    height: 462px;
+    padding: 10px;
+    margin-bottom: 41px;
+}
+
+.authors__header, .subscribes__header {
+    width: 348px;
+    height: 73px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
+    margin-bottom: 10px;
+}
+
+.authors__info, .subscribes__info {
+    margin: 0px 14px;
+    display: flex;
+    min-width: 121px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .authors__name, .subscribes__name {
     color: rgb(0, 0, 0);
-    margin: 2px;
     font-size: 30px;
 }
 
 .authors__photo, .subscribes__photo {
-    width: 50px;
-    height: 50px;
+    border-radius: 21px;
+    width: 73px;
+    height: 73px;
+}
+
+.authors__edit{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+
+.authors__edit__message{
+    width: 318px;
+    height: 36px;
+    margin-bottom: 10px;
+    background: rgb(255, 255, 255);
+    box-shadow: inset 0px 0px 9px rgba(73, 73, 73, 0.25);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.authors__edit__message__input, .authors__edit__message__input:hover {
+    margin-left: 9px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    background-color: rgba(255, 255, 255, 0);
+    color: rgba(0, 0, 0, 1);
+}
+
+.authors__edit__input{
+    background: 1px solid rgb(255, 255, 255);
+    border-radius: 6px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(0, 0, 0, 1);
 }
 
 .authors__publication, .subscribes__news {
     overflow-y: scroll;
-    background-color: rgb(255, 254, 126);
-    width: 100%;
-    height: 400px;
+    width: 384px;
+    height: 288px;
+    border-radius: 17px;
     display: flex;
     flex-direction: column;
 }
 
 .authors__post {
-    margin: 10px;
-    background-color: rgb(241, 146, 163);
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.authors__post__info{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    margin-left: 12px;
+    justify-content: space-between;
 }
 
 .authors__post__message {
@@ -94,29 +275,46 @@ li, ul {
 }
 
 .authors__post__name {
-    color: rgb(88, 94, 101);
     margin: 1px;
 }
 
 .authors__post__art {
-    background-color: rgb(81, 95, 131);
-    width: 180px;
+    width: 221px;
+    height: 221px;
+    border-radius: 13px;
 }
 
-
-
-
-
-.subscribes {
-    background-color: rgb(175, 207, 255);
-    width: 45%;
-    height: 100%;
+.subscribes__myAuthor {
+    overflow-y: scroll;
+    width: 155px;
+    height: 70px;
+    padding: 11px 0 0 4px;
+    background: rgb(255, 255, 255);
+    box-shadow: inset 0px 0px 9px rgba(73, 73, 73, 0.25);
+    border-radius: 12px;
 }
 
 .subscribes__authors {
-    color: black;
-    background-color: rgb(160, 177, 227);
-    margin: 10px 0;
+    width: 366px;
+    height: 36px;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgba(146, 162, 224, 1);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: rgba(146, 162, 224, 1);
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.subscribes__btn{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 

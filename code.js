@@ -15,7 +15,12 @@ function Author() {
     };
     this.addSubscribes = function (subscribe){
         subscribes.push(subscribe);
+        console.log(subscribes);
     };
+    this.deleteSubscribes = function (subscribe){
+        subscribes.pop(subscribe);
+        console.log(subscribe);
+    }
 };
 
 function Subscribes (behavior) {
@@ -71,12 +76,35 @@ const subscribeTo = (subscribe) => {
             console.log('kate подписалась');}
         else if(subscribe.id =='ksu'){sadovod.addSubscribes(ksu);
             console.log('ksu подписалась')};
-    }
-    else if(slavaCheck){
+    };
+    if(slavaCheck){
         if (subscribe.id == 'kate'){slava.addSubscribes(kate);
             console.log('kate подписалась на славу');}
         else if(subscribe.id =='ksu'){slava.addSubscribes(ksu);
             console.log('ksu подписалась на славу')};
+    };
+
+
+
+    // slava.addSubscribes(kate);
+    // slava.addSubscribes(ksu);
+};
+
+const unsubscribeFrom = (subscribe) => {
+    const sadovodCheck = subscribe.childNodes[3].childNodes[1].childNodes[1].childNodes[1].checked; //true или false
+    const slavaCheck = subscribe.childNodes[3].childNodes[1].childNodes[3].childNodes[1].checked;
+
+    if (sadovodCheck){
+        if (subscribe.id == 'kate'){sadovod.deleteSubscribes(kate);
+            console.log('kate отписалась от садовода');}
+        else if(subscribe.id =='ksu'){sadovod.deleteSubscribes(ksu);
+            console.log('ksu отписалась от садовода')};
+    };
+    if(slavaCheck){
+        if (subscribe.id == 'kate'){//slava.addSubscribes(kate);
+            console.log('kate отписалась от славы');}
+        else if(subscribe.id =='ksu'){//slava.addSubscribes(ksu);
+            console.log('ksu отписалась от славы')};
     };
 
 
@@ -126,4 +154,12 @@ document.addEventListener('click', event => {
     if (!currentElementClicked) return;
 
     subscribeTo(event.target.parentElement.parentElement);
+});
+
+document.addEventListener('click', event => {
+    const currentElementClicked = event.target.classList.contains('btnUnsubscribe');
+
+    if (!currentElementClicked) return;
+
+    unsubscribeFrom(event.target.parentElement.parentElement);
 });
