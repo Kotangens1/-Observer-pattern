@@ -12,83 +12,114 @@
     <title>Document</title>
 </head>
 <body>
-    <section class = "authors">
-        <ul>
-            <li class ="authors__board">
-                <div class="authors__header">
-                    <h1 class="authors__name">sadovod</h1>
-                    <img class="authors__photo" src="authors/sadovod/photo.jpg">
-                </div>
-                <section class="authors__edit">
-                    <input class="authors__edit__input">
-                    <button class="btnPublication">Опубликовать</button>
-                    <input class="authors__edit__message">
-                </section>
-                <ul class="authors__publication">
-                </ul>
-            </li>
-            <li class ="authors__board">
-                <div class="authors__header">
-                    <h1 class="authors__name">slava</h1>
-                    <img class="authors__photo" src="authors/slava/photo.jpg">
-                </div>
-                <section class="authors__edit">
-                    <input class="authors__edit__input">
-                    <button class="btnPublication">Опубликовать</button>
-                    <input class="authors__edit__message">
-                </section>
-                <ul class="authors__publication">
-                </ul>
-            </li>
-        </ul>
-    </section>
-    <section class="subscribes">
-        <ul>
-            <li class="subscribes__board" id="kate">
-                <div class="subscribes__header">
-                    <h1 class="subscribes__name">Kate</h1>
-                    <img class="subscribes__photo" src="subscribes/kate.jpg">
-                </div>
-                <section class="subscribes__authors">
-                    <ul>
-                        <li>
-                            <input type="checkbox">
-                            sadovod
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            slava
-                        </li>
+    <header>
+        <h1>The Observer Pattern</h1>
+    </header>
+    <section class="observer">
+        <section class = "authors">
+            <h2>Authors</h2>
+            <hr class="hrObserver">
+            <button class="btnAddAuthor">+</button>
+            <ul>
+                <li class ="authors__board" id="sadovod">
+                    <div class="authors__header">
+                        <img class="authors__photo" src="authors/sadovod/photo.jpg">
+                        <div class="authors__info">
+                            <h3 class="authors__name">sadovod</h3>
+                            <h5 class="authors__subscribes">subscribes: 0</h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <section class="authors__edit">
+                        <div class="authors__edit__message">
+                            <input class="authors__edit__message__input" placeholder="Write something">
+                        </div>
+                        <input  class="authors__edit__input" placeholder="1.jpg">
+                        <button class="btnPublication">to publish</button>
+                    </section>
+                    <ul class="authors__publication">
                     </ul>
-                    <button class="btnSubcribe">Подписаться</button>
-                    <button class="btnUnsubscribe">Отписка</button>
-                </section>
-                <ul class="subscribes__news">
-                </ul>
-            </li>
-            <li class="subscribes__board" id="ksu">
-                <div class="subscribes__header">
-                    <h1 class="subscribes__name">Ksu</h1>
-                    <img class="subscribes__photo" src="subscribes/ksu.jpg">
-                </div>
-                <section class="subscribes__authors">
-                    <ul>
-                        <li>
-                            <input type="checkbox">
-                            sadovod
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            slava
-                        </li>
+                </li>
+                <li class ="authors__board" id="slava">
+                    <div class="authors__header">
+                        <img class="authors__photo" src="authors/slava/photo.jpg">
+                        <div class="authors__info">
+                            <h3 class="authors__name">slava</h3>
+                            <h5 class="authors__subscribes">subscribes: 0 </h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <section class="authors__edit">
+                        <div class="authors__edit__message">
+                            <input class="authors__edit__message__input" placeholder="Write something">
+                        </div>
+                        <input  class="authors__edit__input" placeholder="1.jpg">
+                        <button class="btnPublication">to publish</button>
+                    </section>
+                    <ul class="authors__publication">
                     </ul>
-                    <button class="btnSubcribe">Подписаться</button>
-                    <button class="btnUnsubscribe">Отписка</button>
-                </section>
-                <ul class="subscribes__news">
-                </ul>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </section>
+        <section class="subscribes">
+            <h2>Subscribes</h2>
+            <hr class="hrObserver">
+            <button class="btnAddAuthor">+</button>
+            <ul>
+                <li class="subscribes__board" id="kate">
+                    <div class="subscribes__header">
+                        <img class="subscribes__photo" src="subscribes/kate.jpg">
+                        <div class="subscribes__info">
+                            <h3 class="subscribes__name">Kate</h3>
+                            <h5 class="subscribes__subscribes">Hey</h5>
+                        </div>
+                        <div class="subscribes__myAuthor">
+                        </div>
+                    </div>
+                    <hr>
+                    <select class="subscribes__authors">
+                            <option>
+                                sadovod
+                            </option>
+                            <option>
+                                slava
+                            </option>
+                    </select>
+                    <div class="subscribes__btn">
+                        <button class="btnSubcribe">subscribe</button>
+                        <button class="btnUnsubscribe">unsubscribe</button>
+                    </div>
+                    <ul class="subscribes__news">
+                    </ul>
+                </li>
+                <li class="subscribes__board" id="ksu">
+                    <div class="subscribes__header">
+                        <img class="subscribes__photo" src="subscribes/ksu.jpg">
+                        <div class="subscribes__info">
+                            <h3 class="subscribes__name">Ksu</h3>
+                            <h5 class="subscribes__subscribes">Hello, world</h5>
+                        </div>
+                        <div class="subscribes__myAuthor">
+                        </div>
+                    </div>
+                    <hr>
+                    <select class="subscribes__authors">
+                        <option>
+                            sadovod
+                        </option>
+                        <option>
+                            slava
+                        </option>
+                    </select>
+                    <div class="subscribes__btn">
+                        <button class="btnSubcribe">subscribe</button>
+                        <button class="btnUnsubscribe">unsubscribe</button>
+                    </div>
+                    <ul class="subscribes__news">
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </section>
     <script src="code.js"></script>
 </body>
