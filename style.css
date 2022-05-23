@@ -238,12 +238,19 @@ header {
     color: rgba(0, 0, 0, 1);
 }
 
-.authors__edit__input{
+.authors__edit__input, .authors__edit__input:hover{
     background: 1px solid rgb(255, 255, 255);
     border-radius: 6px;
     width: 34px;
     height: 34px;
     border: 1px solid rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+
+}
+.authors__edit__input::placeholder {
+    display: flex;
+    align-items: center;
 }
 
 .authors__publication, .subscribes__news {
@@ -263,6 +270,7 @@ header {
 }
 
 .authors__post__info{
+    width: 131px;
     display: flex;
     flex-direction: column;
     margin-left: 12px;

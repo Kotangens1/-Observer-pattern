@@ -1,46 +1,104 @@
 const btnSubcribe = document.querySelector('.btnSubcribe');
 const subscribeKate = document.querySelector('#kate');
 const subscribeKsu = document.querySelector('#ksu');
+const authors = document.querySelector('.authors');
+const subscribes = document.querySelector('.subscribes');
 
-// const authorsEditInput = document.querySelector('.authors__edit__input');
-// const authorsEdit = document.querySelector('.authors__edit');
+const delayTime = 1000 //Время задержки отправления поста подписчикам
 
-
-function Author() {
+function Author(myName) {
     let subscribes = [];
-    this.sendArt = function (art, nameArt){
+    let nameSubscribes =[];
+    this.sendArt = function (art, nameArt, message, time){
         for (let i = 0, sub = subscribes.length; i<sub;i++ ){
-            subscribes[i].arts(art, nameArt);
+            subscribes[i].arts(art, nameArt, message, time);
         }
     };
-    this.addSubscribes = function (subscribe){
+    this.addSubscribes = function (subscribe, name){
+        if (nameSubscribes.includes(name,0))return;
+
+        nameSubscribes.push(name);
         subscribes.push(subscribe);
-        console.log(subscribes);
+
+        renderNumberSubscribes(subscribes, myName);
+        renderNumberAuthors(myName, name);
     };
-    this.deleteSubscribes = function (subscribe){
+    this.deleteSubscribes = function (subscribe,name){
+        if (!nameSubscribes.includes(name,0))return;
+        console.log('отписка');
+
+        const index = nameSubscribes.indexOf(name);
         subscribes.pop(subscribe);
-        console.log(subscribe);
-    }
+        nameSubscribes.splice(index, 1);
+        renderNumberSubscribes(subscribes, myName);
+        renderNumberAuthors(myName, name);
+    };
 };
 
 function Subscribes (behavior) {
-    this.arts = function (art, nameArt){
-        behavior(art, nameArt);
+    this.arts = function (art, nameArt, message, time){
+        behavior(art, nameArt, message, time);
     }
 };
 
-let sadovod = new Author();
-let slava = new Author();
-let kate = new Subscribes(function (art, nameArt){
-    news(art,subscribeKate,nameArt);
-    console.log('Kate: Wow! New art! That: '+nameArt)});
-let ksu = new Subscribes(function (art,nameArt){
-    news(art,subscribeKsu,nameArt);
-    console.log('Ksu! - '+nameArt)});
+let sadovod = new Author('sadovod');
+let slava = new Author('slava');
+let kate = new Subscribes(function (art, nameArt, message, time){
+        news(art,subscribeKate,nameArt, message, time);
+    });
+let ksu = new Subscribes(function (art,nameArt, message, time){
+        news(art,subscribeKsu,nameArt, message, time);
+    });
 
 
-//setTimeout(function (){sadovod.sendArt('Гирс ')},3000);
+const renderNumberSubscribes = (subscribes, author) => {
+    let authorHtml = '';
+    const listAuthor = authors.childNodes[7].childNodes;
 
+    for (let i = 0; i < listAuthor.length; i++) {
+        if (listAuthor[i].id == author){
+            authorHtml = listAuthor[i].childNodes[1].childNodes[3].childNodes[3];
+            break;
+        };
+    };
+
+    const numberSubscribes = subscribes.length;
+
+    authorHtml.innerHTML = `
+    subscribes: ${numberSubscribes} 
+    `;
+};
+
+const renderNumberAuthors = (nameAuthor, nameSubscribe) => { 
+    //Функция -> Рендер подписок на авторов: сделана криво, 
+    //в идеале должна рендерить массив авторов, на которые подписан человек, но у меня такого массива нет
+    //поэтому она сначала вычисляет, нет ли повторений имён авторов, и, если повторяния есть - убирает повтор.
+    //Если повторов нет, то функция вызывалась, чтобы добавить имя автора, а, если повторение есть, то для удаления имени.
+    //Логически - это тупое решение, но технически всё работает без проблем. Пока мне так и нужно. 
+
+    let subscribeHtml;
+    const listSubscribes = subscribes.childNodes[7].childNodes;
+
+    for (let i = 0; i < listSubscribes.length; i++) { 
+        //Поиск тега, в котором хранится список авторов для текущего подписчика
+        if (listSubscribes[i].id == nameSubscribe){
+            subscribeHtml = listSubscribes[i].childNodes[1].childNodes[5];
+            break;
+        };
+    };
+
+    for (let i = 0; i < subscribeHtml.childNodes.length; i++){
+        //Проверяю, нет ли повторений в списке авторов
+        if (subscribeHtml.childNodes[i].textContent == nameAuthor){
+            subscribeHtml.childNodes[i].remove();
+            return;
+        };
+        
+    };
+
+    subscribeHtml.innerHTML += `<h6>${nameAuthor}</h6>`;
+};
+    
 const clearInput = (input) => {
   input.value = '';
 };
@@ -48,83 +106,82 @@ const clearInput = (input) => {
 const toPublish = (input) => {
     const eventTarget = input;
     const nameFile = input.value;
-    const message = input.parentElement.childNodes[5].value;
-    const authorPublication = input.parentElement.parentElement.childNodes[5];
-    const author = input.parentElement.parentElement.childNodes[1].childNodes[1].textContent;
+    const message = input.parentElement.childNodes[1].childNodes[1].value;
+    const authorPublication = input.parentElement.parentElement.childNodes[7];
+    const author = input.parentElement.parentElement.id;
+    const time = new Date();
 
     authorPublication.innerHTML += `
-    <li class="authors__post">
-       <h2 class="authors__post__message">${message}</h2>
-        <h3 class="authors__post__name">${author}</h3>
-       <img class="authors__post__art" src="authors/${author}/${nameFile}.jpg">
-    </li>
+        <li class="authors__post">
+        <img class="authors__post__art" src="authors/${author}/${nameFile}">
+           <div class="authors__post__info">
+               <div>
+                   <h4 class="authors__post__message">${message}</h4>
+                   <h6 class="authors__post__name">${author}</h6>
+               </div>
+               <h6>${time}</h6>
+           </div>
+       </li>
     `
-    console.log(`author - ${author}`);
     setTimeout(function () {
-        if (author == 'sadovod') {sadovod.sendArt(eventTarget, nameFile);};//почему то не всем подписчикам доходит публикация
-        if (author == 'slava'){slava.sendArt(eventTarget, nameFile);};
-    },1000);
+        if (author == 'sadovod') {sadovod.sendArt(eventTarget, nameFile, message, time);};
+        if (author == 'slava'){slava.sendArt(eventTarget, nameFile, message, time);};
+    },delayTime);
     clearInput(input);
 };
 
 const subscribeTo = (subscribe) => {
-    const sadovodCheck = subscribe.childNodes[3].childNodes[1].childNodes[1].childNodes[1].checked; //true или false
-    const slavaCheck = subscribe.childNodes[3].childNodes[1].childNodes[3].childNodes[1].checked;
+    const author = subscribe.childNodes[5].value;
 
-    if (sadovodCheck){
-        if (subscribe.id == 'kate'){sadovod.addSubscribes(kate);
-            console.log('kate подписалась');}
-        else if(subscribe.id =='ksu'){sadovod.addSubscribes(ksu);
-            console.log('ksu подписалась')};
-    };
-    if(slavaCheck){
-        if (subscribe.id == 'kate'){slava.addSubscribes(kate);
+    if (author == 'sadovod'){
+        if (subscribe.id == 'kate'){sadovod.addSubscribes(kate, 'kate');
+            console.log('kate подписалась на садовода');}
+        else if(subscribe.id =='ksu'){sadovod.addSubscribes(ksu, 'ksu');
+            console.log('ksu подписалась на славу')};
+    }
+    if(author == 'slava'){
+        if (subscribe.id == 'kate'){slava.addSubscribes(kate, 'kate');
             console.log('kate подписалась на славу');}
-        else if(subscribe.id =='ksu'){slava.addSubscribes(ksu);
+        else if(subscribe.id =='ksu'){slava.addSubscribes(ksu, 'ksu');
             console.log('ksu подписалась на славу')};
     };
-
-
-
-    // slava.addSubscribes(kate);
-    // slava.addSubscribes(ksu);
 };
 
 const unsubscribeFrom = (subscribe) => {
-    const sadovodCheck = subscribe.childNodes[3].childNodes[1].childNodes[1].childNodes[1].checked; //true или false
-    const slavaCheck = subscribe.childNodes[3].childNodes[1].childNodes[3].childNodes[1].checked;
+    const author = subscribe.childNodes[5].value;
 
-    if (sadovodCheck){
-        if (subscribe.id == 'kate'){sadovod.deleteSubscribes(kate);
-            console.log('kate отписалась от садовода');}
-        else if(subscribe.id =='ksu'){sadovod.deleteSubscribes(ksu);
+    if (author == 'sadovod'){
+        if (subscribe.id == 'kate'){
+            sadovod.deleteSubscribes(kate, 'kate');
+            console.log('kate отписалась от садовода');
+        }
+        else if(subscribe.id =='ksu'){sadovod.deleteSubscribes(ksu, 'ksu');
             console.log('ksu отписалась от садовода')};
     };
-    if(slavaCheck){
-        if (subscribe.id == 'kate'){//slava.addSubscribes(kate);
+    if(author == 'slava'){
+        if (subscribe.id == 'kate'){slava.deleteSubscribes(kate, 'kate');
             console.log('kate отписалась от славы');}
-        else if(subscribe.id =='ksu'){//slava.addSubscribes(ksu);
+        else if(subscribe.id =='ksu'){slava.deleteSubscribes(ksu, 'ksu');
             console.log('ksu отписалась от славы')};
     };
-
-
-
-    // slava.addSubscribes(kate);
-    // slava.addSubscribes(ksu);
 };
 
-const news = (input, subscribe, nameFile) => {
-    const message = input.parentElement.childNodes[5].value;
-    const author = input.parentElement.parentElement.childNodes[1].childNodes[1].textContent;
+const news = (input, subscribe, nameFile, message, time) => {
+    const author = input.parentElement.parentElement.id;
+    const subscribePublication = subscribe.childNodes[9];
 
-    const subscribePublication = subscribe.childNodes[5];
-
+    console.log(author);
     subscribePublication.innerHTML += `
     <li class="authors__post">
-       <h2 class="authors__post__message">${message}</h2>
-        <h3 class="authors__post__name">${author}</h3>
-       <img class="authors__post__art" src="authors/${author}/${nameFile}.jpg">
-    </li>
+        <img class="authors__post__art" src="authors/${author}/${nameFile}">
+           <div class="authors__post__info">
+               <div>
+                   <h4 class="authors__post__message">${message}</h4>
+                   <h6 class="authors__post__name">${author}</h6>
+               </div>
+               <h6>${time}</h6>
+           </div>
+       </li>
     `
 };
 
@@ -143,8 +200,8 @@ document.addEventListener('click', event => {
 
     if (!currentElementClicked) return;
 
-    const input = event.target.parentElement.childNodes[1];
-
+    const input = event.target.parentElement.childNodes[3];
+    console.log(input);
     toPublish(input);
 });
 
