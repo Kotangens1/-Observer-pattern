@@ -1,3 +1,11 @@
+// ЧТО ЭТО И ЗАЧЕМ
+// -> Это реализация паттерна "Наблюдатель"
+
+// -> Нужна для тренировки и лучшего понимания мной данной технологии.
+
+// -> Идея: Подписчики(справа) подписываются на авторов-художников, которые, в свою очередь, присылают им рисунки и посты.
+// Автор может послать любой рисунок из папки 'authors/name_authors/..'. Сейчас там всего три рисунка 1.jpg,2.jpg,3.jpg
+
 const btnSubcribe = document.querySelector('.btnSubcribe');
 const subscribeKate = document.querySelector('#kate');
 const subscribeKsu = document.querySelector('#ksu');
@@ -128,6 +136,7 @@ const toPublish = (input) => {
         if (author == 'slava'){slava.sendArt(eventTarget, nameFile, message, time);};
     },delayTime);
     clearInput(input);
+    clearInput(input.parentElement.childNodes[1].childNodes[1]);
 };
 
 const subscribeTo = (subscribe) => {
@@ -191,8 +200,18 @@ document.addEventListener('keypress', event => {
     const currentElementClicked = event.target.classList.contains('authors__edit__input');
     if (!currentElementClicked) return;
 
-
     toPublish(event.target);
+});
+
+document.addEventListener('keypress', event => {
+    if (!(event.code === 'Enter')) return;
+
+    const currentElementClicked = event.target.classList.contains('authors__edit__message__input');
+    if (!currentElementClicked) return;
+
+    const input = event.target.parentElement.parentElement.childNodes[3];
+
+    toPublish(input);
 });
 
 document.addEventListener('click', event => {
@@ -201,7 +220,8 @@ document.addEventListener('click', event => {
     if (!currentElementClicked) return;
 
     const input = event.target.parentElement.childNodes[3];
-    console.log(input);
+    
+    if (!input.value) {alert('Enter the name of the drawing'); return};
     toPublish(input);
 });
 

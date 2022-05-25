@@ -166,6 +166,12 @@ header {
     color: rgb(255, 255, 255);
 }
 
+.btnPublication:hover, .btnSubcribe:hover, .btnUnsubscribe:hover {
+    background: rgb(255, 255, 255);
+    color: rgba(146, 162, 224, 1);
+    border: 1px solid rgba(146, 162, 224, 1);
+}
+
 .authors,.subscribes {
     width: 384px;
 }
